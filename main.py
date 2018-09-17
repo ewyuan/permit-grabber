@@ -7,6 +7,13 @@ from pdfrw import PdfFileReader, PdfFileWriter
 
 
 def download_files(links, directory):
+    """
+    Returns a list of strings that are the file paths to the downloaded PDFs from links.
+
+    :param links: list[str]
+    :param directory: str
+    :return: list[str]
+    """
     paths = []
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -20,6 +27,15 @@ def download_files(links, directory):
 
 
 def get_pdf_links(start_date, end_date):
+    """
+    Returns the direct link to download PDFs from "https://www.burnaby.ca/".
+    This function parses the building permit web page and restricts the direct
+    links outputted to be within the start_date and end_date.
+
+    :param start_date: str
+    :param end_date: str
+    :return: list[str]
+    """
     base_url = "https://www.burnaby.ca/"
     target_url = "https://www.burnaby.ca/City-Services/Building/Permits-Issued.html"
     links = []
@@ -54,6 +70,12 @@ def get_pdf_links(start_date, end_date):
 
 
 def merge_pdfs(paths):
+    """
+    Merges all the PDFs from the file paths from paths.
+
+    :param paths: list[str]
+    :return: None
+    """
     writer = PdfFileWriter()
     for path in paths:
         reader = PdfFileReader(path)
@@ -63,9 +85,12 @@ def merge_pdfs(paths):
 
 
 if __name__ == "__main__":
-    start_date = sys.argv[1]
-    end_date = sys.argv[2]
-    links_ = get_pdf_links(start_date, end_date)
-    paths = download_files(links_, "files/")
-    merge_pdfs(paths)
-    shutil.rmtree("files/")
+    if len(sys.argv) != 3:
+        print("Usage: python3 start_date end_date")
+    else:
+        start_date = sys.argv[1]
+        end_date = sys.argv[2]
+        links_ = get_pdf_links(start_date, end_date)
+        paths = download_files(links_, "files/")
+        merge_pdfs(paths)
+        shutil.rmtree("files/")
