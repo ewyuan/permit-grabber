@@ -16,6 +16,10 @@ python3 main.py <start date> <end date>
 ```
 **Note:** To grab building permits from the same month, use the same date for both the start date and the end date.
 
+Since the website only limits the PDFs to be displayed for one year, the range will vary depending on when the user utilizes the program. The range will be from "{Current Month} {Current Year}" to "{Current Month} {Current Year - 1}".
+  
+The following table was created on September 17, 2018:
+
 | Valid Date Entries |
 | ------------- |
 | "September 2017" |
