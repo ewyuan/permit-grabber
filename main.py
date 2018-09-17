@@ -1,3 +1,4 @@
+import sys
 import bs4
 import requests
 import os
@@ -18,7 +19,9 @@ def download_files(links, directory):
     return paths
 
 
-def get_pdf_links(start_date, end_date, base_url, target_url):
+def get_pdf_links(start_date, end_date):
+    base_url = "https://www.burnaby.ca/"
+    target_url = "https://www.burnaby.ca/City-Services/Building/Permits-Issued.html"
     links = []
     header = {'User-Agent': 'Mozilla/5.0 '
                             '(Windows NT 6.1; WOW64) '
@@ -60,11 +63,9 @@ def merge_pdfs(paths):
 
 
 if __name__ == "__main__":
-    links_ = get_pdf_links("July 2018",
-                          "May 2018",
-                          "https://www.burnaby.ca/",
-                          "https://www.burnaby.ca/City-Services/Building/Permits-Issued.html")
-
+    start_date = sys.argv[1]
+    end_date = sys.argv[2]
+    links_ = get_pdf_links(start_date, end_date)
     paths = download_files(links_, "files/")
     merge_pdfs(paths)
     shutil.rmtree("files/")
