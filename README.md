@@ -5,7 +5,7 @@ A script that grabs building permits from https://www.burnaby.ca
 
 ### Prerequisites
 * Python 3
-* BeautifulSoup https://pypi.org/project/BeautifulSoup/
+* BeautifulSoup4 https://pypi.org/project/beautifulsoup4/
 * Requests https://pypi.org/project/requests/
 * pdfrw https://pypi.org/project/pdfrw/
 
