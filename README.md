@@ -35,3 +35,6 @@ The following table was created on September 17, 2018:
 | "July 2018" |
 | "August 2018" |
 | "September 2018" |
+
+## Sample output:
+Please see output.pdf.
