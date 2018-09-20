@@ -48,24 +48,20 @@ def get_pdf_links(start_date, end_date):
     session = requests.get(url=target_url, headers=header)
     soup = bs4.BeautifulSoup(session.text, "html.parser")
     tags = soup.findAll("li", {"class": "ipf-nestedlist-folder"})
-    filtered_tags= []
-
     found_start = False
     found_end = False
     for item in tags:
-        if str(item).find(start_date) >= 0:
-            found_start = True
-        if str(item).find(end_date) >= 0:
-            found_end = True
-        if found_start:
-            filtered_tags.append(item)
-            if found_end:
-                break
-
-    for item in filtered_tags:
         sublist = item.findAll("li", {"class": "ipf-nestedlist-file"})
         for subitem in sublist:
-            links.append(base_url + subitem.a["href"])
+            if str(subitem.text) == start_date:
+                found_start = True
+            if str(subitem.text) == end_date:
+                found_end = True
+            if found_start:
+                links.append(base_url + subitem.a["href"])
+                if found_end:
+                    break
+
     return links
 
 
