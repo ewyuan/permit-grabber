@@ -1,12 +1,12 @@
 # permit-grabber
-A script that grabs building permits from https://www.burnaby.ca
+A script that grabs building permits from https://www.burnaby.ca.
 
 ## Getting started
 
 ### Prerequisites
 * Python 3
-* BeautifulSoup https://pypi.org/project/BeautifulSoup/
-* Requests https://pypi.org/project/requests/
+* beautifulsoup4 https://pypi.org/project/beautifulsoup4/
+* requests https://pypi.org/project/requests/
 * pdfrw https://pypi.org/project/pdfrw/
 
 ### How to run
@@ -15,6 +15,10 @@ A script that grabs building permits from https://www.burnaby.ca
 python3 main.py <start date> <end date>
 ```
 **Note:** To grab building permits from the same month, use the same date for both the start date and the end date.
+
+Since the website only limits the PDFs to be displayed for one year, the range will vary depending on when the user utilizes the program. The range will be from "{Current Month} {Current Year}" to "{Current Month} {Current Year - 1}".
+  
+The following table was created on September 17, 2018:
 
 | Valid Date Entries |
 | ------------- |
@@ -31,3 +35,6 @@ python3 main.py <start date> <end date>
 | "July 2018" |
 | "August 2018" |
 | "September 2018" |
+
+## Sample output:
+Please see output.pdf.
